@@ -18,17 +18,18 @@ from Configuration import Application
 from Configuration import Configuration
 from Configuration import Logger
 
+from views.view_common import CommonView
+
+Application.register_blueprint(CommonView, url_prefix='/')
+
 @Application.errorhandler(404)
 def page_not_found(message):
     print(message)
     return render_template('404.html', error=message)
 
-@Application.route('/')
-def index():
-    return 'Hello SqlView'
-
 if __name__ == '__main__':
     Logger.info('start server with %s', time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
     Logger.info('current system version <%s>', Configuration['server']['version'])
+    Logger.info('server route map %s', Application.url_map)
     Application.run(port=Configuration['server']['port'],
                     debug=Configuration['server']['debug'])

@@ -16,6 +16,7 @@ import sys
 import yaml
 from flask import Flask
 from flask_bootstrap import Bootstrap
+from flask_login import LoginManager
 
 from Logger import Logger
 from utils.FileUtils import FileUtils
@@ -55,5 +56,10 @@ Logger.info('end load default configuration file')
 Application = Flask(__name__)
 
 # load bootstrap #
+Logger.info('load flask bootstrap framework from flask bootstrap')
 bootstrap = Bootstrap(Application)
 
+# load flask login manager #
+Logger.info('load flask security framework from flask login')
+LoginManagerFactory = LoginManager()
+LoginManagerFactory.init_app(Application)
