@@ -12,9 +12,16 @@
 
 import time
 
+from flask import render_template
+
 from Configuration import Application
 from Configuration import Configuration
 from Configuration import Logger
+
+@Application.errorhandler(404)
+def page_not_found(message):
+    print(message)
+    return render_template('404.html', error=message)
 
 @Application.route('/')
 def index():
