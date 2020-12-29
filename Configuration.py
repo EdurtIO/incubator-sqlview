@@ -15,6 +15,7 @@ import sys
 
 import yaml
 from flask import Flask
+from flask_bootstrap import Bootstrap
 
 from Logger import Logger
 from utils.FileUtils import FileUtils
@@ -52,3 +53,7 @@ Logger.info('end load default configuration file')
 
 # load flask #
 Application = Flask(__name__)
+
+# load bootstrap #
+bootstrap = Bootstrap(Application)
+
