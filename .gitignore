@@ -6,4 +6,7 @@
 # idea #
 .idea
 *.iml
-target/
+
+# python #
+__pycache__
+*.pyc
