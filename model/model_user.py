@@ -27,15 +27,14 @@ USERS = [
 
 class UserModel(UserMixin):
 
-    def __init__(self, user):
-        self.username = user.get("name")
-        self.password_hash = user.get("password")
-        self.id = user.get("id")
+    def __init__(self, username=None, password=None):
+        self.username = username
+        self.password = password
 
     def verify_password(self, password):
-        if self.password_hash is None:
+        if self.password is None:
             return False
-        return check_password_hash(self.password_hash, password)
+        return check_password_hash(self.password, password)
 
     def get_id(self):
         return self.id

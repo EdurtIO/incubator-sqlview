@@ -22,9 +22,9 @@ def get():
     array = []
     type = request.args.get('type')
     index = request.args.get('index')
-    RedisClient = ConnectRedis.connect(dbIndex=index)
+    # RedisClient = ConnectRedis.connect(dbIndex=index)
     if type == 'database':
-        count = RedisClient.config_get('databases')['databases']
+        count = 12 # RedisClient.config_get('databases')['databases']
         for index in range(int(count)):
             array.append({
                 'text': 'db' + str(index),
@@ -32,7 +32,7 @@ def get():
                 'type': 'database'
             })
     elif type == 'table':
-        keys = RedisClient.keys()
+        keys = ['12', '13']#RedisClient.keys()
         for key in keys:
             array.append({
                 'text': key,

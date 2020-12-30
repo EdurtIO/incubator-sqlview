@@ -14,13 +14,22 @@
         </div>
     {% endfor %}
 
-    <form method="POST" class="form-signin">
+    <form id="userRegister" method="POST" class="form-signin">
         <div class="mb-4"></div>
-        <h1 class="h3 mb-3 font-weight-normal">User Login</h1>
+        <h1 class="h3 mb-3 font-weight-normal">User Register</h1>
         <label for="inputEmail" class="sr-only">UserName</label>
         <input type="text" id="username" class="form-control" placeholder="username" required>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="password" class="form-control" placeholder="Password" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        <input type="password" id="re-password" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
     </form>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename = 'js/user/user-register.js') }}"></script>
+    <script>
+        UserRegister.initEvent();
+    </script>
 {% endblock %}

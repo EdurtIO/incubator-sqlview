@@ -1,5 +1,8 @@
 server:
   port: 8989
-  debug: True
+  debug: False
   version: 1.0.0-Incubator
   description: Sql View is sql visualization tools!
+db:
+  type: sqlite
+  path: sqlview.db
