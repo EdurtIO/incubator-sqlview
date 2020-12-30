@@ -1,5 +1,5 @@
 #!/usr/bin/env python  
-#-*- coding:utf-8 _*-  
+# -*- coding:utf-8 _*-
 """ 
 @Author: shicheng 
 @License: Apache Licence 
@@ -9,3 +9,7 @@
 @Site:  
 @Software: incubator-sqlview
 """
+from api.api_redis import RedisApi
+from Configuration import Application
+
+Application.register_blueprint(RedisApi, url_prefix='/api/v1/redis')

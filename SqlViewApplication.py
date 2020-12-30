@@ -11,6 +11,7 @@
 """
 
 import time
+import api
 
 from flask import render_template
 

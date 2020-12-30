@@ -36,3 +36,8 @@ def logout():
     logout_user()
     flash(u'The current user has logged out!')
     return redirect(url_for('UserView.login'))
+
+@LoginManagerFactory.unauthorized_handler
+def unauthorized():
+    flash('You do not have access to the current page, please log in.')
+    return redirect(url_for('UserView.login'))

@@ -1,5 +1,5 @@
 #!/usr/bin/env python  
-#-*- coding:utf-8 _*-  
+# -*- coding:utf-8 _*-
 """ 
 @Author: shicheng 
 @License: Apache Licence 
@@ -9,3 +9,11 @@
 @Site:  
 @Software: incubator-sqlview
 """
+from flask import Blueprint, render_template
+
+EditorView = Blueprint('EditorView', __name__, template_folder='templates')
+
+@EditorView.route('/', methods=['GET', 'POST'])
+# @login_required
+def index():
+    return render_template('editor/common.html')
