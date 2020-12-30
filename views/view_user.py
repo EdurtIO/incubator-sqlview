@@ -9,9 +9,11 @@
 @Site:  
 @Software: incubator-sqlview
 """
-from flask import Blueprint, render_template
-from Configuration import LoginManagerFactory
+from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask_login import current_user as CurrentUser, login_user, logout_user
 
+from common.CommonMethod import Method
+from Configuration import LoginManagerFactory
 from model.model_user import UserModel
 
 UserView = Blueprint('UserView', __name__, template_folder='templates', static_folder='static')
@@ -22,4 +24,15 @@ def load_user(user_id):
 
 @UserView.route('/login', methods=['GET', 'POST'])
 def login():
+    if CurrentUser.is_authenticated:
+        print('current user is login success!')
+    if request.method == Method.POST.name:
+        login_user(UserModel.get(1))
+        return redirect(url_for('CommonView.index'))
     return render_template('user/login.html', title='User Login')
+
+@UserView.route('/logout')
+def logout():
+    logout_user()
+    flash(u'The current user has logged out!')
+    return redirect(url_for('UserView.login'))

@@ -15,4 +15,4 @@ CommonView = Blueprint('CommonView', __name__, template_folder='templates')
 
 @CommonView.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html', heartbeats=[])
+    return render_template('index.html')

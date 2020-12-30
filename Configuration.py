@@ -12,6 +12,7 @@
 
 import os
 import sys
+import uuid
 
 import yaml
 from flask import Flask
@@ -54,6 +55,7 @@ Logger.info('end load default configuration file')
 
 # load flask #
 Application = Flask(__name__)
+Application.config['SECRET_KEY'] = str(uuid.uuid4())
 
 # load bootstrap #
 Logger.info('load flask bootstrap framework from flask bootstrap')
