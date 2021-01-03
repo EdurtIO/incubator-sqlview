@@ -1,0 +1,40 @@
+{% extends "layout/base.html" %}
+{% block title %}Editor{% endblock %}
+
+{% block page_styles %}
+{% endblock %}
+
+{% block page_content %}
+
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="container">
+        <div class="mt-2">
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-info">New DataSource</button>
+            </div>
+            <table class="table table-hover mt-sm-2">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Operator</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for model in models %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+{% endblock %}
