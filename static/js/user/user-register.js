@@ -12,17 +12,17 @@ UserRegister = function () {
                 're-password': re_password
             }
             $.ajax({
-                type: "POST",
-                dataType: "json",
+                type: 'POST',
                 url: '/api/v1/user/register',
-                data: json,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify(json),
                 success: function (data) {
-                    console.log(data)
                     if (data.status != 'SUCCESS') {
-                        alert(data.message)
-                        return false
+                        Qmsg.error(data.message);
                     } else {
-
+                        Qmsg.success('Register Success! please login it!')
                     }
                 },
                 error: function (data) {
