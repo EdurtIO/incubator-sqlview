@@ -19,6 +19,7 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 
+from coder.coder_json import JSONEncoder
 from Logger import Logger
 from utils.FileUtils import FileUtils
 
@@ -56,6 +57,7 @@ Logger.info('end load default configuration file')
 # load flask #
 Application = Flask(__name__)
 Application.config['SECRET_KEY'] = str(uuid.uuid4())
+Application.json_encoder = JSONEncoder
 
 # load bootstrap #
 Logger.info('load flask bootstrap framework from flask bootstrap')

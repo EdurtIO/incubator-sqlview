@@ -11,7 +11,7 @@
 """
 import os
 
-from .StringUtils import StringUtils
+from .utils_string import StringUtils
 
 class FileUtils:
 

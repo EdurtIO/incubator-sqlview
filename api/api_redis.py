@@ -11,7 +11,7 @@
 """
 from flask import Blueprint, jsonify, request
 
-from common.CommonMethod import Method
+from common.common_method import Method
 from connect.connect_redis import ConnectRedis
 
 RedisApi = Blueprint('RedisApi', __name__, template_folder='templates')

@@ -12,7 +12,7 @@
 
 from unittest import TestCase
 
-from utils.StringUtils import StringUtils
+from utils.utils_string import StringUtils
 
 class TestStringUtils(TestCase):
 

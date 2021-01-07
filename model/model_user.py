@@ -28,6 +28,7 @@ USERS = [
 class UserModel(UserMixin):
 
     def __init__(self, username=None, password=None):
+        self.id = None
         self.username = username
         self.password = password
 

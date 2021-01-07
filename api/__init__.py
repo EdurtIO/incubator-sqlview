@@ -10,6 +10,8 @@
 @Software: incubator-sqlview
 """
 from api.api_redis import RedisApi
+from api.api_user import UserApi
 from Configuration import Application
 
 Application.register_blueprint(RedisApi, url_prefix='/api/v1/redis')
+Application.register_blueprint(UserApi, url_prefix='/api/v1/user')

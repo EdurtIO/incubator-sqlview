@@ -10,10 +10,11 @@
 @Software: incubator-sqlview
 """
 from flask import Blueprint, render_template
+from common.common_method import Method
 
-EditorView = Blueprint('EditorView', __name__, template_folder='templates')
+DataSourceView = Blueprint('DataSourceView', __name__, template_folder='templates')
 
-@EditorView.route('/', methods=['GET', 'POST'])
+@DataSourceView.route('/', methods=[Method.GET.name, Method.POST.name])
 # @login_required
 def index():
     return render_template('editor/common.html')

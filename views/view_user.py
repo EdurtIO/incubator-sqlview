@@ -12,10 +12,10 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user as CurrentUser, login_user, logout_user
 
-from common.CommonMethod import Method
+from common.common_method import Method
 from Configuration import LoginManagerFactory
 from model.model_user import UserModel
-from service.service_user import ServiceUser
+from service.service_user import UserService
 
 UserView = Blueprint('UserView', __name__, template_folder='templates', static_folder='static')
 
@@ -28,20 +28,24 @@ def login():
     if CurrentUser.is_authenticated:
         print('current user is login success!')
     if request.method == Method.POST.name:
+        UserService.find_user_password(username='test', password='123')
         login_user(UserModel.get(1))
         return redirect(url_for('CommonView.index'))
     return render_template('user/login.html', title='User Login')
 
 @UserView.route('register', methods=[Method.GET.name, Method.POST.name])
 def register():
-    if request.method == Method.POST.name:
-        username = request.form.get('username')
-        password = request.form.get('password')
-        print(request.form)
-        model = UserModel(username=username, password=password)
-        print(model.username)
-        ServiceUser.save(model=model)
-        return None
+    # if request.method == Method.POST.name:
+    #     username = request.form.get('username')
+    #     password = request.form.get('password')
+    #     re_password = request.form.get('re-password')
+    #     if password != re_password:
+    #         flash(message='The two passwords are inconsistent. Please check it!')
+    #         return redirect(url_for('UserView.register'))
+    #     else:
+    #         model = UserModel(username=username, password=password)
+    #         UserService.save(model=model)
+    #         return redirect(url_for('CommonView.index'))
     return render_template('user/register.html', title='User Register')
 
 @UserView.route('/logout')
