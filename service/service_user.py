@@ -9,7 +9,7 @@
 @Site:  
 @Software: incubator-sqlview
 """
-from werkzeug.security import generate_password_hash
+from passlib.hash import sha256_crypt
 
 from connect.connect_sqlite3 import ConnectSqlite
 from model.model_user import UserModel
@@ -20,7 +20,7 @@ class UserService:
         connection = ConnectSqlite.connect()
         cursor = connection.cursor()
         cursor.execute('INSERT INTO user(username, password) values(?,?)',
-                       (model.username, generate_password_hash(model.password, method='sha256')))
+                       (model.username, sha256_crypt.encrypt(model.password)))
         connection.commit()
         cursor.close()
 
@@ -31,10 +31,17 @@ class UserService:
         row = cursor.fetchone()
         return row
 
+    def find_id(id=None):
+        connection = ConnectSqlite.connect()
+        cursor = connection.cursor()
+        cursor.execute('SELECT * FROM user WHERE id = ?', (int(id),))
+        row = cursor.fetchone()
+        return row
+
     def find_username_password(username=None, password=None):
         connection = ConnectSqlite.connect()
         cursor = connection.cursor()
-        rows = cursor.execute('SELECT * FROM user WHERE username = ? AND password = ?',
-                              (username, generate_password_hash(password, method='sha256')))
-        for row in rows:
-            print(row)
+        cursor.execute('SELECT * FROM user WHERE username = ? AND password = ?',
+                       (username, sha256_crypt.encrypt(password)))
+        row = cursor.fetchone()
+        return row
