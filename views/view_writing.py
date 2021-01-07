@@ -3,8 +3,8 @@
 """ 
 @Author: shicheng 
 @License: Apache Licence 
-@File: view_editor.py 
-@Time: 2020-12-30 12:27
+@File: view_writing.py 
+@Time: 2021-01-07 16:33
 @Contact: shicheng 
 @Site:  
 @Software: incubator-sqlview
@@ -14,9 +14,10 @@ from flask_login import login_required
 
 from common.common_method import Method
 
-DataSourceView = Blueprint('DataSourceView', __name__, template_folder='templates')
+WritingView = Blueprint('WritingView', __name__, template_folder='templates')
 
-@DataSourceView.route('/', methods=[Method.GET.name])
+@WritingView.route('/<type>', methods=[Method.GET.name])
 @login_required
-def index():
-    return render_template('datasource/index.html')
+def index(type=None):
+    if type == 'map':
+        return render_template('writing/map.html')
